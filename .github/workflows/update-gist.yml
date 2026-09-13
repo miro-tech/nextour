@@ -1,9 +1,7 @@
-
 name: Update Nexthour Gist
 
 on:
   schedule:
-    # Every 30 minutes
     - cron: "*/30 * * * *"
 
   workflow_dispatch:
@@ -26,15 +24,8 @@ jobs:
 
       - name: Fetch configs and update Gist
         env:
-          NEXTHOUR_API_KEY: ${{ secrets.NEXTHOUR_API_KEY }}
-          NEXTHOUR_CERT: ${{ secrets.NEXTHOUR_CERT }}
-          NEXTHOUR_HMAC_KEY: ${{ secrets.NEXTHOUR_HMAC_KEY }}
-          NEXTHOUR_PACKAGE: "com.gamenetvpn.pingbooster"
-
           GITHUB_TOKEN: ${{ secrets.GIST_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
-
-          SAVE_LOCAL: "false"
 
         run: |
           python nexthour_gist.py
